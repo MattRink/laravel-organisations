@@ -1,4 +1,4 @@
 <?php
 
-Route::get('/organisation', 'OrganisationController@create')->name('organisation.create');
-Route::post('/organisation', 'OrganisationController@store')->name('organisation.store');
+Route::get('/organisation', 'MattRink\Organisations\Controllers\OrganisationController@create')->name('organisation.create');
+Route::post('/organisation', 'MattRink\Organisations\Controllers\OrganisationController@store')->name('organisation.store');
