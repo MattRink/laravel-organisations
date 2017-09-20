@@ -18,6 +18,10 @@ class OrganisationsServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/views', 'organisations');
 
         $this->publishes([
+            __DIR__ . '/config/organisations.php' => config_path('organisations.php'),
+        ], 'config');
+
+        $this->publishes([
             __DIR__ . '/migrations' => database_path('migrations'),
         ], 'migrations');
 
@@ -33,6 +37,8 @@ class OrganisationsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
+        $this->mergeConfigFrom(
+            __DIR__ . '/config/organisations.php', 'organisations'
+        );
     }
 }
