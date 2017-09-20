@@ -3,6 +3,7 @@
 namespace MattRink\Organisations\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class OrganisationController extends Controller
 {
@@ -21,7 +22,7 @@ class OrganisationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         return view('organisations::create');
     }
@@ -31,8 +32,15 @@ class OrganisationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        
+        $request->validate([
+            'name' => 'required|max:255',
+        ]);
+
+        $organisation = new Organisation($request->all());
+        $organisation->save();
+
+        return redirect()->route(config('organisations.post-create-route'));
     }
 }
