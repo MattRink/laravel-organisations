@@ -2,8 +2,9 @@
 
 namespace MattRink\Organisations\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use MattRink\Organisations\Models\Organisation;
 
 class OrganisationController extends Controller
 {
@@ -38,8 +39,7 @@ class OrganisationController extends Controller
             'name' => 'required|max:255',
         ]);
 
-        $organisation = new Organisation($request->all());
-        $organisation->save();
+        $organisation = Organisation::create($request->all());
 
         return redirect()->route(config('organisations.post-create-route'));
     }
